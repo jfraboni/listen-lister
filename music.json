@@ -1,10 +1,15 @@
 {
-    {
-        "genre": "rock"
-        "music": [{
-            "Artist": "Led Zepplin",
-            "Title": "Stairway to Heaven"
-            
-        }]
-    }
+  "genres": {
+    "genre": "rock",
+    "music": [
+      {
+        "Artist": "Led Zepplin",
+        "Title": "Stairway to Heaven"
+      },
+      {
+        "Artist": "Prince",
+        "Title": "1999"
+      }
+    ]
+  }
 }
