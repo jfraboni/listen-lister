@@ -1,15 +1,43 @@
 {
-  "genres": {
-    "genre": "rock",
-    "music": [
-      {
-        "Artist": "Led Zepplin",
-        "Title": "Stairway to Heaven"
-      },
-      {
-        "Artist": "Prince",
-        "Title": "1999"
-      }
-    ]
-  }
+  "genres": [
+    {
+      "name": "rock",
+      "music": [
+        {
+          "Artist": "My Chemical Romance",
+          "Title": "Welcome to The Black Parade"
+        },
+        {
+          "Artist": "Evanescence",
+          "Title": "Going Under"
+        }
+      ]
+    },
+    {
+      "name": "classical",
+      "music": [
+        {
+          "Artist": "Mozart",
+          "Title": "requiem in D"
+        },
+        {
+          "Artist": "Pachelbel",
+          "Title": "cannon in D"
+        }
+      ]
+    },
+    {
+      "name": "KPop",
+      "music": [
+        {
+          "Artist": "SNSD",
+          "Title": "Gee "
+        },
+        {
+          "Artist": "SHINEE",
+          "Title": "excuse me miss "
+        }
+      ]
+    }
+  ]
 }
