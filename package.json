@@ -1,0 +1,26 @@
+{
+  "name": "listen-lister",
+  "version": "0.0.1",
+  "description": "A simple app to exemplify list processing",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "dependencies": {
+    "prompt": "^0.2.14",
+    "cli-table": "^0.3.0",
+    "csv": "^0.4.0",
+    "deep-extend": "^0.2.11",
+    "tsv": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jfraboni/listen-lister.git"
+  },
+  "author": "jfraboni, gracealaye",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jfraboni/listen-lister/issues"
+  },
+  "homepage": "https://github.com/jfraboni/listen-lister"
+}
