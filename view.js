@@ -27,6 +27,9 @@ function makeMenu(message, validator) {
         }
     ];
     
+    /**
+     * Displays the menu and returns the menu object for fluent chaining
+     */
     var _menu = {
         show: function() {
             // just in case we haven't used the prompt before //
@@ -36,7 +39,13 @@ function makeMenu(message, validator) {
                 _menu.emit('userInput', result.input);
             });
             return _menu;
+        },
+        
+        onUserInput: function (callback) {
+            _menu.once('userInput', callback);
+            return _menu;
         }
+        
     };
     deepExtend(_menu, new EventEmitter());
     return _menu;
