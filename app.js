@@ -10,7 +10,7 @@ var music = collections
                 .loadSync();
 
 var menu = view
-               .makeMenu("(1) Show Music (2) Add Music (q) Quit", /^[1-2q]$/)
+               .makeMenu("(1) Show Music (2) Add Music (q) Quit", /^[1-2q]{1}$/)
                .onUserInput(function (input) {
                     switch (input) {
                         case '1':
@@ -36,7 +36,7 @@ function showGenres() {
     }
     view.makeTable(["No.:", "Genre:"]).show(genres);
     view
-       .makeMenu("(n) Select a genre (b) back", /^[0-9b]$/)
+       .makeMenu("(#) Select a genre (b) back", /^[0-9b]{1}$/)
        .onUserInput(function (input) {
            switch (input) {
                case 'b':
@@ -53,26 +53,26 @@ function showGenre(genre) {
     console.log(genre.name);
     
     var values = [];
-    for (var i = 0; i < genre.musiclength; i++) {
-        values.push([genre.music[i].artist, genre.music[i].title]);
+    for (var i = 0; i < genre.music.length; i++) {
+        values.push([i+1, genre.music[i].artist, genre.music[i].title]);
     }
     
     view.makeTable(["No.:", "Artist:", "Title:"]).show(values);
-    // var list = find(music) music.values.find(function (element, index, array) {
-    //   return (element.name === genre) ? true : false;
-    // });
+    view
+       .makeMenu("(g) Back to genres (m) back to main menu", /^[gm]{1}$/)
+       .onUserInput(function (input) {
+           switch (input) {
+               case 'm':
+                   menu.show();
+                   break;
+                case 'g':
+                   menu.show();
+                   break;
+           }
+       })
+       .show();
 }
 
 function addMusic() {
     
 }
-
-function find(values, key, value) {
-    for (var i = 0; i < values.length; i++) {
-        if (values[i][key] === value) {
-            return values[i].music;
-        }
-        return null;
-    }
-}
-

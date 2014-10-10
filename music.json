@@ -3,12 +3,12 @@
       "name": "rock",
       "music": [
         {
-          "Artist": "My Chemical Romance",
-          "Title": "Welcome to The Black Parade"
+          "artist": "My Chemical Romance",
+          "title": "Welcome to The Black Parade"
         },
         {
-          "Artist": "Evanescence",
-          "Title": "Going Under"
+          "artist": "Evanescence",
+          "title": "Going Under"
         }
       ]
     },
@@ -16,12 +16,12 @@
       "name": "classical",
       "music": [
         {
-          "Artist": "Mozart",
-          "Title": "requiem in D"
+          "artist": "Mozart",
+          "title": "requiem in D"
         },
         {
-          "Artist": "Pachelbel",
-          "Title": "cannon in D"
+          "artist": "Pachelbel",
+          "title": "cannon in D"
         }
       ]
     },
@@ -29,12 +29,12 @@
       "name": "KPop",
       "music": [
         {
-          "Artist": "SNSD",
-          "Title": "Gee "
+          "artist": "SNSD",
+          "title": "Gee "
         },
         {
-          "Artist": "SHINEE",
-          "Title": "excuse me miss "
+          "artist": "SHINEE",
+          "title": "excuse me miss "
         }
       ]
     }
