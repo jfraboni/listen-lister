@@ -66,7 +66,7 @@ function showGenre(genre) {
                    menu.show();
                    break;
                 case 'g':
-                   menu.show();
+                   showGenres();
                    break;
            }
        })
