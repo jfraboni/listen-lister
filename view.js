@@ -41,8 +41,13 @@ function makeMenu(message, validator) {
             return _menu;
         },
         
-        onUserInput: function (callback) {
+        onUserInputOnce: function (callback) {
             _menu.once('userInput', callback);
+            return _menu;
+        },
+        
+        onUserInput: function (callback) {
+            _menu.on('userInput', callback);
             return _menu;
         }
         
@@ -65,8 +70,13 @@ function makeMultiInputMenu(properties) {
             });
         },
         
-        onUserInput: function (callback) {
+        onUserInputOnce: function (callback) {
             _menu.once('userInput', callback);
+            return _menu;
+        },
+        
+        onUserInput: function (callback) {
+            _menu.on('userInput', callback);
             return _menu;
         }
     };

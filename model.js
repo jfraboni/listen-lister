@@ -27,3 +27,17 @@ module.exports.makeGenre = makeGenre;
 module.exports.makeGenreFromJSON = function (data) {
     return makeGenre(data.name, data.music);
 };
+
+function makeSong(artist, title) {
+    var _song = {
+          artist: artist,
+          title: title
+        };
+    return _song;
+}
+module.exports.makeSong = makeSong;
+
+module.exports.makeSongFromJSON = function (data) {
+    return makeSong(data.artist, data.title);
+};
+

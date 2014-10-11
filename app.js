@@ -1,29 +1,37 @@
 'use-strict'; 
 
 const 
+    exit = require("./util/exit"),
     collections = require("./util/collections"), 
     model = require("./model"),
     view = require("./view"); 
     
+var alphaNumber = /^[A-Za-z0-9\s\'\"\.]+$/;
+    
 var music = collections
                 .makeList("music.json", model.makeGenreFromJSON)
                 .loadSync();
+                
+exit.init({
+    exit: {actions: [music.saveSync.bind(music)]},
+    sigint: {actions: [music.saveSync.bind(music), process.exit]}
+});
 
 var menu = view
                .makeMenu("(1) Show Music (2) Add Music (q) Quit", /^[1-2q]{1}$/)
                .onUserInput(function (input) {
                     switch (input) {
                         case '1':
-                            showGenres();
+                            showGenreMenu();
                             break;
                         
                         case '2':
-                            addMusic()
+                            addSong();
                             break;
                             
                         case 'q':
                             console.log('Thanks for using Listen Lister, bye bye...');
-                            process.exit(1);
+                            process.exit(0);
                             break;
                     }
                 })
@@ -35,22 +43,10 @@ function showGenres() {
         genres.push([i+1, music.values[i].name]);
     }
     view.makeTable(["No.:", "Genre:"]).show(genres);
-    view
-       .makeMenu("(#) Select a genre (b) back", /^[0-9b]{1}$/)
-       .onUserInput(function (input) {
-           switch (input) {
-               case 'b':
-                   menu.show();
-                   break;
-               default:
-                   showGenre(music.values[input-1]);
-           }
-       })
-       .show();
 }
 
 function showGenre(genre) {
-    console.log(genre.name);
+    console.log(genre.name + ':');
     
     var values = [];
     for (var i = 0; i < genre.music.length; i++) {
@@ -66,13 +62,65 @@ function showGenre(genre) {
                    menu.show();
                    break;
                 case 'g':
-                   showGenres();
+                   showGenreMenu();
                    break;
            }
        })
        .show();
 }
 
-function addMusic() {
-    
+function addSong() {
+    console.log("Add a song:");
+    view.makeMultiInputMenu([
+        {
+            name: "artist", 
+            validator: alphaNumber,
+            message: 'Enter the name of the Artist',
+            required: true
+        },
+        {
+            name: "title", 
+            validator: alphaNumber,
+            message: 'Enter the title of the song',
+            required: true
+        }])
+        .onUserInput(function (input) {
+            selectGenreForSong(model.makeSong(input.artist, input.title));
+        })
+        .show();
+}
+
+function selectGenreForSong(song) {
+    showGenres();
+    view
+       .makeMenu("(#) Select a genre for the song (m) Exit to main menu", /^[0-9m]{1}$/)
+       .onUserInput(function (input) {
+           switch (input) {
+               case 'm':
+                   menu.show();
+                   break;
+               default:
+                   var genre = music.values[input-1];
+                   genre.music.push(song);
+                   console.log("Song %s by %s has been added to genre %s", song.title, song.artist, genre.name);
+                   showGenre(genre);
+           }
+       })
+       .show();
+}
+
+function showGenreMenu() {
+    showGenres();
+    view
+       .makeMenu("(#) Select a genre (m) Exit to main menu", /^[0-9m]{1}$/)
+       .onUserInput(function (input) {
+           switch (input) {
+               case 'm':
+                   menu.show();
+                   break;
+               default:
+                   showGenre(music.values[input-1]);
+           }
+       })
+       .show();
 }
